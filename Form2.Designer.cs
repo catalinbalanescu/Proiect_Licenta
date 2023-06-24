@@ -40,15 +40,19 @@
             label4 = new Label();
             button1 = new Button();
             label5 = new Label();
+            label6 = new Label();
+            linkLabel1 = new LinkLabel();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(560, 2);
+            dateTimePicker1.Location = new Point(1035, 12);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(228, 27);
             dateTimePicker1.TabIndex = 0;
@@ -144,7 +148,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(599, 436);
+            button1.Location = new Point(1052, 517);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(187, 31);
@@ -156,19 +160,55 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = SystemColors.GradientActiveCaption;
             label5.BorderStyle = BorderStyle.Fixed3D;
-            label5.Location = new Point(1, 2);
+            label5.Location = new Point(130, 2);
             label5.Name = "label5";
             label5.Size = new Size(52, 22);
             label5.TabIndex = 10;
             label5.Text = "label5";
             label5.Click += label5_Click_1;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 2);
+            label6.Name = "label6";
+            label6.Size = new Size(115, 20);
+            label6.TabIndex = 11;
+            label6.Text = "Esti conectat ca:";
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(611, 83);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(109, 20);
+            linkLabel1.TabIndex = 12;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Situatie scoala ";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = SystemColors.Window;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = SystemColors.Window;
+            dataGridView1.Location = new Point(600, 133);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(524, 240);
+            dataGridView1.TabIndex = 13;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 483);
+            ClientSize = new Size(1265, 561);
+            Controls.Add(dataGridView1);
+            Controls.Add(linkLabel1);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(button1);
             Controls.Add(label4);
@@ -187,6 +227,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,5 +245,8 @@
         private Label label4;
         private Button button1;
         public Label label5;
+        private Label label6;
+        private LinkLabel linkLabel1;
+        private DataGridView dataGridView1;
     }
 }

@@ -37,11 +37,15 @@ namespace Proiect_Licenta
                             tableName = "ANUNTURI_MATERIE1";
                             break;
                         case "Materie2":
-                            tableName = "PROFESORI";
+                            tableName = "ANUNTURI_MATERIE2";
                             break;
-                        case "Administrator":
-                            tableName = "ADMINISTRATOR";
+                        case "Materie3":
+                            tableName = "ANUNTURI_MATERIE3";
                             break;
+                        case "Materie4":
+                            tableName = "ANUNTURI_MATERIE4";
+                            break;
+
                         default:
                             // Nu s-a selectat nicio opțiune validă
                             return;
@@ -86,10 +90,13 @@ namespace Proiect_Licenta
                                 tableName = "ANUNTURI_MATERIE1";
                                 break;
                             case "Materie2":
-                                tableName = "PROFESORI";
+                                tableName = "ANUNTURI_MATERIE2";
                                 break;
-                            case "Administrator":
-                                tableName = "ADMINISTRATOR";
+                            case "Materie3":
+                                tableName = "ANUNTURI_MATERIE3";
+                                break;
+                            case "Materie4":
+                                tableName = "ANUNTURI_MATERIE4";
                                 break;
                             default:
                                 // Nu s-a selectat nicio opțiune validă
@@ -133,10 +140,13 @@ namespace Proiect_Licenta
                         tableName = "ANUNTURI_MATERIE1";
                         break;
                     case "Materie2":
-                        tableName = "PROFESORI";
+                        tableName = "ANUNTURI_MATERIE2";
                         break;
-                    case "Administrator":
-                        tableName = "ADMINISTRATOR";
+                    case "Materie3":
+                        tableName = "ANUNTURI_MATERIE3";
+                        break;
+                    case "Materie4":
+                        tableName = "ANUNTURI_MATERIE4";
                         break;
                     default:
                         // Nu s-a selectat nicio opțiune validă
@@ -205,10 +215,14 @@ namespace Proiect_Licenta
                                 tableName = "ANUNTURI_MATERIE1";
                                 break;
                             case "Materie2":
-                                tableName = "PROFESORI";
+                                tableName = "ANUNTURI_MATERIE2";
                                 break;
-                            case "Administrator":
-                                tableName = "ADMINISTRATOR";
+
+                            case "Materie3":
+                                tableName = "ANUNTURI_MATERIE3";
+                                break;
+                            case "Materie4":
+                                tableName = "ANUNTURI_MATERIE4";
                                 break;
                             default:
                                 // Nu s-a selectat nicio opțiune validă
@@ -277,10 +291,14 @@ namespace Proiect_Licenta
                             tableName = "ANUNTURI_MATERIE1";
                             break;
                         case "Materie2":
-                            tableName = "PROFESORI";
+                            tableName = "ANUNTURI_MATERIE2";
                             break;
-                        case "Administrator":
-                            tableName = "ADMINISTRATOR";
+
+                        case "Materie3":
+                            tableName = "ANUNTURI_MATERIE3";
+                            break;
+                        case "Materie4":
+                            tableName = "ANUNTURI_MATERIE4";
                             break;
                         default:
                             // Nu s-a selectat nicio opțiune validă
@@ -344,7 +362,7 @@ namespace Proiect_Licenta
         {
             if (monthCalendar1.SelectionRange.Start != null && comboBox4.SelectedItem != null)
             {
-                string tipexamen=comboBox5.SelectedItem.ToString(); 
+                string tipexamen = comboBox5.SelectedItem.ToString();
                 // Obține data selectată din MonthCalendar
                 DateTime selectedDate = monthCalendar1.SelectionRange.Start;
 
@@ -357,12 +375,32 @@ namespace Proiect_Licenta
                 // Inserează valorile în baza de date
 
                 // Obține opțiunea selectată în ComboBox
-                string selectedOption = comboBox3.SelectedItem?.ToString();
+                string selectedOption = comboBox5.SelectedItem?.ToString();
 
                 // Afișează numele tabelului corespunzător opțiunii selectate
-                string tableName = "MATERIE1";
 
+                string selectedOption1 = comboBox8.SelectedItem?.ToString();
 
+                // Afișează numele tabelului corespunzător opțiunii selectate
+                string tableName = "";
+                switch (selectedOption1)
+                {
+                    case "Materie1":
+                        tableName = "MATERIE1";
+                        break;
+                    case "Materie2":
+                        tableName = "MATERIE2";
+                        break;
+                    case "Materie3":
+                        tableName = "MATERIE3";
+                        break;
+                    case "Materie4":
+                        tableName = "MATERIE4";
+                        break;
+                    default:
+                        // Nu s-a selectat nicio opțiune validă
+                        return;
+                }
                 // Conectare la baza de date
                 string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -404,6 +442,287 @@ namespace Proiect_Licenta
         private void tabPage4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedMaterie = comboBox6.SelectedItem?.ToString();
+            string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
+
+            if (selectedMaterie == "Materie1")
+            {
+                string query = "SELECT student,nota_examen FROM situatie_materie1";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView1.DataSource = dataTable;
+            }
+            else if (selectedMaterie == "Materie2")
+            {
+                string query = "SELECT student,nota_examen FROM situatie_materie2";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView1.DataSource = dataTable;
+            }
+            else if (selectedMaterie == "Materie3")
+            {
+                string query = "SELECT student,nota_examen FROM situatie_materie3";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView1.DataSource = dataTable;
+            }
+            else if (selectedMaterie == "Materie4")
+            {
+                string query = "SELECT student,nota_examen FROM situatie_materie4";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView1.DataSource = dataTable;
+            }
+
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
+            string selectedMaterie = comboBox6.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedMaterie))
+            {
+                MessageBox.Show("Selectați o materie din combobox!");
+                return;
+            }
+
+            string tableName = "situatie_materie1"; // Tabelul implicit
+
+            switch (selectedMaterie)
+            {
+                case "Materie1":
+                    tableName = "situatie_materie1";
+                    break;
+                case "Materie2":
+                    tableName = "situatie_materie2";
+                    break;
+                case "Materie3":
+                    tableName = "situatie_materie3";
+                    break;
+                case "Materie4":
+                    tableName = "situatie_materie4";
+                    break;
+                default:
+                    MessageBox.Show("Materie invalidă!");
+                    return;
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Iterăm prin fiecare rând din DataGridView
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        // Verificăm dacă rândul nu este un rând de antet sau un rând gol
+                        if (!row.IsNewRow)
+                        {
+                            // Obținem celula studentului și celula notei
+                            DataGridViewCell studentCell = row.Cells["student"];
+                            DataGridViewCell notaCell = row.Cells["Nota_examen"];
+
+                            // Verificăm dacă celulele sunt valide și nu sunt nule
+                            if (studentCell.Value != null && notaCell.Value != null)
+                            {
+                                // Obținem valorile studentului și notei din celulele corespunzătoare
+                                string student = studentCell.Value.ToString();
+
+                                // Verificăm dacă celula notei conține o valoare validă
+                                if (int.TryParse(notaCell.Value.ToString(), out int nota))
+                                {
+                                    // Salvăm valorile în baza de date
+                                    string query = $"UPDATE {tableName} SET nota_examen = @Nota WHERE student = @Student";
+                                    MySqlCommand command = new MySqlCommand(query, connection);
+                                    command.Parameters.AddWithValue("@Student", student);
+                                    command.Parameters.AddWithValue("@Nota", nota);
+                                    command.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    // Ignorăm celula notei care nu conține o valoare numerică validă
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                // Ignorăm rândurile care conțin celule nule
+                                continue;
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Notele au fost salvate în baza de date!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Eroare la salvarea în baza de date: " + ex.Message);
+                }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Iterăm prin fiecare rând din DataGridView
+                    foreach (DataGridViewRow row in dataGridView2.Rows)
+                    {
+                        // Verificăm dacă rândul nu este un rând de antet sau un rând gol
+                        if (!row.IsNewRow)
+                        {
+                            // Obținem celula studentului și celula notei
+                            DataGridViewCell studentCell = row.Cells["student"];
+                            DataGridViewCell notaCell = row.Cells["nota_test_laborator"];
+
+                            // Verificăm dacă celulele sunt valide și nu sunt nule
+                            if (studentCell.Value != null && notaCell.Value != null)
+                            {
+                                string selectedMaterie = comboBox7.SelectedItem?.ToString();
+                                string tableName = ""; // Tabelul implicit
+
+                                switch (selectedMaterie)
+                                {
+                                    case "Materie1":
+                                        tableName = "situatie_materie1";
+                                        break;
+                                    case "Materie2":
+                                        tableName = "situatie_materie2";
+                                        break;
+                                    case "Materie3":
+                                        tableName = "situatie_materie3";
+                                        break;
+                                    case "Materie4":
+                                        tableName = "situatie_materie4";
+                                        break;
+                                    default:
+                                        MessageBox.Show("Materie invalidă!");
+                                        return;
+                                }
+                                // Obținem valorile studentului și notei din celulele corespunzătoare
+                                string student = studentCell.Value.ToString();
+
+                                // Verificăm dacă celula notei conține o valoare validă
+                                if (int.TryParse(notaCell.Value.ToString(), out int nota))
+                                {
+                                    // Salvăm valorile în baza de date
+                                    string query = $"UPDATE {tableName} SET nota_test_laborator = @Nota WHERE student = @Student";
+                                    MySqlCommand command = new MySqlCommand(query, connection);
+                                    command.Parameters.AddWithValue("@Student", student);
+                                    command.Parameters.AddWithValue("@Nota", nota);
+                                    command.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    // Ignorăm celula notei care nu conține o valoare numerică validă
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                // Ignorăm rândurile care conțin celule nule
+                                continue;
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Notele au fost salvate în baza de date!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Eroare la salvarea în baza de date: " + ex.Message);
+                }
+            }
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedMaterie = comboBox7.SelectedItem?.ToString();
+            string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
+
+            if (selectedMaterie == "Materie1")
+            {
+                string query = "SELECT student, nota_test_laborator FROM situatie_materie1";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView2.DataSource = dataTable;
+            }
+            else if (selectedMaterie == "Materie2")
+            {
+                string query = "SELECT student, nota_test_laborator FROM situatie_materie2";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView2.DataSource = dataTable;
+            }
+            else if (selectedMaterie == "Materie3")
+            {
+                string query = "SELECT student, nota_test_laborator FROM situatie_materie3";
+                DataTable dataTable = new DataTable();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+
+                dataGridView1.DataSource = dataTable;
+            }
         }
     }
 }

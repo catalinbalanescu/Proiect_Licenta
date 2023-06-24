@@ -107,7 +107,7 @@ namespace Proiect_Licenta
                     dataGridView1.DataSource = dataTable;
                     dataGridView1.Visible = true;
 
-                    MessageBox.Show("Datele au fost încărcate în DataGridView!");
+                    MessageBox.Show("Lista de examene este afisata!");
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +144,7 @@ namespace Proiect_Licenta
 
                     reader.Close();
 
-                  
+
                     listBox1.Visible = true;
                 }
                 catch (Exception ex)
@@ -152,6 +152,11 @@ namespace Proiect_Licenta
                     MessageBox.Show("Eroare la citirea din baza de date: " + ex.Message);
                 }
             }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

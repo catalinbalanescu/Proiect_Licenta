@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Proiect_Licenta
 {
@@ -76,6 +78,57 @@ namespace Proiect_Licenta
         private void label5_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string connectionString = "server=localhost;database=licenta;uid=root;pwd=Maineemarti23@";
+            string student = label5.Text; // Obținem numele studentului din Label5
+
+            // Creăm un DataTable pentru a stoca rezultatele
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Materie");
+            dataTable.Columns.Add("Nota_examen");
+            dataTable.Columns.Add("Nota_test_laborator");
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Iterăm prin toate cele 4 tabele
+                    for (int i = 1; i <= 4; i++)
+                    {
+                        string tableName = $"situatie_materie{i}";
+
+                        // Realizăm interogarea pentru a obține notele studentului în materie
+                        string query = $"SELECT nota_examen, nota_test_laborator FROM {tableName} WHERE student = @Student";
+                        MySqlCommand command = new MySqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Student", student);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Obținem notele din rezultatele interogării
+                                string notaExamen = reader["nota_examen"].ToString();
+                                string notaTestLaborator = reader["nota_test_laborator"].ToString();
+
+                                // Adăugăm rândul în DataTable
+                                dataTable.Rows.Add(tableName, notaExamen, notaTestLaborator);
+                            }
+                        }
+                    }
+
+                    // Setăm sursa de date a DataGridView ca fiind DataTable
+                    dataGridView1.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Eroare la interogarea bazei de date: " + ex.Message);
+                }
+            }
         }
     }
 }

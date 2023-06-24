@@ -282,6 +282,66 @@ namespace Proiect_Licenta
                     }
                 }
             }
+            else if (selectedMaterie == "Materie3")
+            {
+                string tableName = "situatie_materie3";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        // Iterează prin fiecare element selectat din CheckedListBox
+                        foreach (object item in checkedListBox1.CheckedItems)
+                        {
+                            string student = item.ToString();
+
+                            // Inserează înregistrarea în baza de date
+                            string query = $"INSERT INTO {tableName} (student) VALUES (@Student)";
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            command.Parameters.AddWithValue("@Student", student);
+                            command.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Studentii au fost repartizati la Materie3!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Eroare la inserarea în baza de date: " + ex.Message);
+                    }
+                }
+            }
+            else if (selectedMaterie == "Materie4")
+            {
+                string tableName = "situatie_materie4";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        // Iterează prin fiecare element selectat din CheckedListBox
+                        foreach (object item in checkedListBox1.CheckedItems)
+                        {
+                            string student = item.ToString();
+
+                            // Inserează înregistrarea în baza de date
+                            string query = $"INSERT INTO {tableName} (student) VALUES (@Student)";
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            command.Parameters.AddWithValue("@Student", student);
+                            command.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Studentii au fost repartizati la Materie4!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Eroare la inserarea în baza de date: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }

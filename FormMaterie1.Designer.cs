@@ -69,6 +69,7 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Anunturi Curs";
             tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
             // 
             // panel1
             // 
@@ -80,7 +81,7 @@
             // button1
             // 
             button1.BackColor = SystemColors.GradientActiveCaption;
-            button1.Location = new Point(16, 32);
+            button1.Location = new Point(16, 57);
             button1.Name = "button1";
             button1.Size = new Size(140, 32);
             button1.TabIndex = 1;
@@ -103,12 +104,13 @@
             // 
             // button3
             // 
+            button3.BackColor = SystemColors.GradientActiveCaption;
             button3.Location = new Point(6, 31);
             button3.Name = "button3";
-            button3.Size = new Size(97, 34);
+            button3.Size = new Size(201, 34);
             button3.TabIndex = 1;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            button3.Text = "Lista examene planificate";
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // dataGridView1
@@ -134,16 +136,18 @@
             // 
             // button4
             // 
+            button4.BackColor = SystemColors.GradientActiveCaption;
             button4.Location = new Point(3, 20);
             button4.Name = "button4";
             button4.Size = new Size(167, 29);
             button4.TabIndex = 1;
             button4.Text = "Lista Studenti inrolati";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // listBox1
             // 
+            listBox1.BackColor = SystemColors.GradientActiveCaption;
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 20;
             listBox1.Location = new Point(3, 55);
